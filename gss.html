@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Webhosting easy and fast</title>
+    <title>Golden Section Search explanation and example</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Template Google Fonts -->
@@ -28,7 +28,11 @@
 
     <!-- Modernizr JS File -->
     <script src="js/modernizr.custom.js"></script>
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
+
 
 <body class="blog-post light">
 <!-- Header Starts -->
@@ -94,38 +98,74 @@
                 <!-- Meta Starts -->
                 <div class="meta open-sans-font">
                     <span><i class="fa fa-user"></i> Karl-A. Jahnel</span>
-                    <span class="date"><i class="fa fa-calendar"></i> 21st January 2022</span>
-                    <span><i class="fa fa-tags"></i> webhosting, personal webpage, virtual business card, responsive desing, html, css, chatbot, bootstrap</span>
+                    <span class="date"><i class="fa fa-calendar"></i> 18th April 2022</span>
+                    <span><i class="fa fa-tags"></i> golden section search, golden ratio, golden section search implementation, visual explanation, golden section search python, multi dimensional golden section search</span>
                 </div>
                 <!-- Meta Ends -->
                 <!-- Article Content Starts -->
-                <h1 class="text-uppercase text-capitalize">From Design to Hosting - How to setup your personal Webpage or virtual Business Card </h1>
-                <img src="img/blog/landing.png" class="img-fluid" alt="Blog image"/>
+                <h1 class="text-uppercase text-capitalize">Golden section search - explanation and visual implementation in Python</h1>
+                <img src="img/blog/gss.gif" class="img-fluid" alt="Blog image"/>
                 <div class="blog-excerpt open-sans-font pb-5">
-                    <h2 class="text-uppercase text-capitalize">You Need: </h2>
+                    <h2 class="text-uppercase text-capitalize">Explanation</h2>
+
+                    <p>"If function f is unimodal on the interval [a,b], then the minimum for f can be located to any desired accuracy by the well known methods of Fibonacci search or golden section search "[Algorithms for Minimization without Derivatives, Richard P. Brend]
+                    It can also calculate the maximum, if the negative function -f(x) is used. When multiple extrema exist, the method will converge to one of them. the golden section search iteratively shortens the range of values in the interval. It is robust but very slow. The golden section search was discovered by Kiefer(1953)</p>
+
+                    <p>
+                        The golden ratio is the division ratio of a distance or other quantity in which the ratio of the whole to its larger part (also called the major) is equal to the ratio of the larger to the smaller part (the minor). Thus, with a as the major and b as the minor:
+                    </p>
+                        $$\frac{a+b}{a}=\frac{a}{b}$$
+                    <p>
+                        The division ratio of the golden section calculated as a number by means of division of these quantities is an irrational number
+                    </p>
+                    $$\phi = \frac{a}{b}=\frac{a+b}{a}=\frac{1+\sqrt{5}}{2}\approx 1.6180339887$$
+                    <p> We start by having these information</p>
                     <ul>
-                        <li>Design - either you code it yourself or you buy one ~ 10$ <a href="https://themeforest.net/category/site-templates?term=virtual%20business%20card">https://themeforest.net/category/site-templates?term=virtual%20business%20card</a> </li>
-                        <li>Webhoster - This is where you upload your webpage starts at 1.99€/month<a href="https://www.netcup.de/bestellen/produkt.php?produkt=2217">https://www.netcup.de/bestellen/produkt.php?produkt=2217</a> Get 30% Discount with my Code: 36nc16428876720 </li>
-                        <li>Editor - To personalize your design, I recommend <a href="https://code.visualstudio.com/">https://code.visualstudio.com/ </a></li>
+                        <li>function f</li>
+                        <li> left interval boundary a</li>
+                        <li> right interval boundary b</li>
+                        <li> the golden ratio</li>
                     </ul>
-                    <p>After you bought your design, you read the documentation of your design. There you find important information about where to change the color theme and how to change the pictures and fonts. Then you open the theme folder(where css, html and so is located)</p>
-                    <img src="img/blog/vs1.png" class="img-fluid" alt="Blog image"/>
 
-                    <p>When you double click on e.g. index.html you see the landing page of your website. There you find text e.g. "Karl Jahnel" in my case This is the text you are searching for in the visual studio code editor. To fill in your text you just find the reference in the code and change it to your needs. you can do this for every text you find in the theme.</p>
-                    <img src="img/blog/vs2.png" class="img-fluid" alt="Blog image"/>
+                    <p>We now calculate a value d</p>
 
-                    <p>To change the pictures, you search for the reference in the code. The picture which is shown on the page is in the belonging file. e.g. in index html you have this. You need to put your picture in the folder in your theme. then you just change the path which is under src="yourpath" </p>
-                    <img src="img/blog/img code.png" class="img-fluid" alt="Blog image"/>
-                    <p>After you filled in all your information you are ready to upload your website. To do so, you need an account at a webhosting service. I am using netcup. You can use my code to get 5€ free at registration: 36nc16428876720 (If its not valid mail me) and if you are buying Webhosting 2000 you can get 30% discount with 36nc16428876720 . You will get an email after your registration and after you bouhgt your domains. It takes around 10 min till you get your mail. then you log in under</p>
-                    <img src="img/blog/netcup.png" class="img-fluid" alt="Blog image"/>
-                    <p>I recommend to make your website https (activating ssl certificate) first. You can do this under Products -> scroll down and go to webhosting -> domains (now click on your domain) -> Lets Encrypt -> confirm creation (hit checkbox). Then you need to set up the redirection. To do so go on domains -> on tab hosting on your domain -> hosting einstellungen check encrypt checkbox</p>
-                    <img src="img/blog/encrypt.png" class="img-fluid" alt="Blog image"/>
-                    <p>Now you are ready to upload your complete theme folder, where you took your changes. you go to domains -> data manager ->hit the + and upload your folder</p>
-                    <img src="img/blog/uploda.png" class="img-fluid" alt="Blog image"/>
-                    <p>Now your webpage is online and encrypted! congratulations! To find it on google, you need to setup google search console <a href="https://search.google.com/">https://search.google.com/ </a> there you type in your domain name. you get a txt entry. You need to go back to your customer control panel <a href="https://www.customercontrolpanel.de/domains.php">https://www.customercontrolpanel.de/domains.php </a> -> you go to dns and you add the dns entry as following</p>
-                    <img src="img/blog/dnsentry.png" class="img-fluid" alt="Blog image"/>
-                    <p>Now your website is registred at google. You now just need to wait until its activated. If it doesnt show up, you go baack to google search console and you type in your domain, then click on get indexing. Then you wait. It takes around 2-3 days.</p>
-                    <h2 class="text-uppercase text-capitalize">congratulations your webpage is online</h2>
+                    $$dx = \frac{(b - a)}{\phi} $$
+                    <p>We can use this to calculate our new x values for the left (a): </p>
+                    $$d = a+dx$$
+                    <p>and for the right (b): </p>
+                    $$c = b-dx$$
+                    <p> We now find the value of f(c) and f(d). If f(c) < f(d)
+                    <ul>
+                    <li>eliminate all x values < d </li>
+                    <li>d becomes new a</li>
+                </ul></p>
+                    <p>if f(c) > f(d) then:</p>
+                    <ul>
+                        <li>eliminate all x values > d </li>
+                        <li>c becomes new a</li>
+                    </ul>
+                    <h2 class="text-uppercase text-capitalize">Graphical Implementation in Python</h2>
+                    <ol>
+                        <li>
+                            Specify the function to be minimized, f(x), the interval to be searched as {X1,X4}, and their functional values F1 and F4.
+                        </li>
+                        <li>
+                            Calculate an interior point and its functional value F2. The two interval lengths are in the ratio c : r or r : c where r = φ − 1; and c = 1 − r, with φ being the golden ratio.
+                        </li>
+                        <li>
+                            Using the triplet, determine if convergence criteria are fulfilled. If they are, estimate the X at the minimum from that triplet and return.
+                        </li>
+                        <li>
+                            From the triplet, calculate the other interior point and its functional value. The three intervals will be in the ratio c:cr:c.
+                        </li>
+                        <li>
+                            The three points for the next iteration will be the one where F is a minimum, and the two points closest to it in X.
+                        </li>
+                        <li>
+                            Go to step 3
+                        </li>
+                    </ol>
+                    <script src="https://gist.github.com/Barathaner/4639f844be8680eb855d83427944ea0f.js"></script>
 
                 </div>
                 <!-- Article Content Ends -->
