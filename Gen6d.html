@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>6D Pose Estimation Overview and deep dive into Gen6D</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Template Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,600i,700" rel="stylesheet">
+
+    <!-- Template CSS Files -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/preloader.min.css" rel="stylesheet">
+    <link href="css/circle.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/fm.revealator.jquery.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- CSS Skin File -->
+    <link href="css/skins/green.css" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <!-- Modernizr JS File -->
+    <script src="js/modernizr.custom.js"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body class="blog-post light">
+<!-- Header Starts -->
+<header class="header" id="navbar-collapse-toggle">
+    <!-- Fixed Navigation Starts -->
+    <ul class="icon-menu d-none d-lg-block revealator-slideup revealator-once revealator-delay1">
+        <li class="icon-box">
+            <i class="fa fa-home"></i>
+            <a href="index.html">
+                <h2>Home</h2>
+            </a>
+        </li>
+        <li class="icon-box">
+            <i class="fa fa-user"></i>
+            <a href="about.html">
+                <h2>About</h2>
+            </a>
+        </li>
+        <li class="icon-box">
+            <i class="fa fa-briefcase"></i>
+            <a href="portfolio.html">
+                <h2>Portfolio</h2>
+            </a>
+        </li>
+        <li class="icon-box">
+            <i class="fa fa-book"></i>
+            <a href="blog.html">
+                <h2>Blog</h2>
+            </a>
+        </li>
+    </ul>
+    <!-- Fixed Navigation Ends -->
+    <!-- Mobile Menu Starts -->
+    <nav role="navigation" class="d-block d-lg-none">
+        <div id="menuToggle">
+            <input type="checkbox" />
+            <span></span>
+            <span></span>
+            <span></span>
+            <ul class="list-unstyled" id="menu">
+                <li><a href="index.html"><i class="fa fa-home"></i><span>Home</span></a></li>
+                <li><a href="about.html"><i class="fa fa-user"></i><span>About</span></a></li>
+                <li><a href="portfolio.html"><i class="fa fa-folder-open"></i><span>Portfolio</span></a></li>
+                <li class="active"><a href="blog.html"><i class="fa fa-comments"></i><span>Blog</span></a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Mobile Menu Ends -->
+</header>
+<!-- Header Ends -->
+<!-- Page Title Starts -->
+<section class="title-section text-left text-sm-center revealator-slideup revealator-once revealator-delay1">
+    <h1>my <span>blog</span></h1>
+    <span class="title-bg">posts</span>
+</section>
+<!-- Page Title Ends -->
+<!-- Main Content Starts -->
+<section class="main-content revealator-slideup revealator-once revealator-delay1">
+    <div class="container">
+        <div class="row">
+            <!-- Article Starts -->
+            <article class="col-12">
+                <!-- Meta Starts -->
+                <div class="meta open-sans-font">
+                    <span><i class="fa fa-user"></i> Karl-A. Jahnel</span>
+                    <span class="date"><i class="fa fa-calendar"></i> 23rd May 2022</span>
+                    <span><i class="fa fa-tags"></i> 6D Pose estimation, robotics , how do robots see? , detect other objects, physical boundaries and orientation, deep neural network, ROS, python</span>
+                </div>
+                <!-- Meta Ends -->
+                <!-- Article Content Starts -->
+                <h1 class="text-uppercase text-capitalize">6D Pose Estimation Overview and deep dive into Gen6D</h1>
+                <img src="img/blog/gend.gif" class="img-fluid" alt="Blog image"/>
+                <div class="blog-excerpt open-sans-font pb-5">
+
+                    How do robots can perceive their environment with just a camera? and How do they know what other things do and can predict it? A Crucial part is 6d Pose Estimation.
+                     A 6D Pose is the specificnumber of axes that a rigid body is able to freely move in three-dimensional space. So it describes the physical boundaries and the orientation of a real object for the computer.
+                    <br>
+
+                    <h2 class="text-uppercase text-capitalize">But What is a 6D Pose? </h2>
+
+                    <p>A 6D Pose is the specificnumber of axes that a rigid body is able to freely move in three-dimensional space. So it describes the physical boundaries and the orientation of a real object for the computer.</p>
+                    <img src="img/blog/6Dof.png" class="img-fluid" alt="Blog image" width="50%" height="50%" />
+                    <p> In this picture you can see where the 6 comes from. The "D" stands here for "Degrees of Freedom" and it means every dimension an object can turn itself around. There exist 6 Dimensions </p>
+                    <ul>
+                        <li>forward/backward - surge</li>
+                        <li> up/down - heave</li>
+                        <li>left/right - sway</li>
+                        <li>roll</li>
+                        <li>pitch</li>
+                        <li>yaw</li>
+                    </ul>
+                    <br>
+                    <h2 class="text-uppercase text-capitalize"> Real world applications</h2>
+                    Google uses 6d pose estimation to predict the traffic in their waymo vehicle.
+                    <img src="img/blog/waymo.gif" class="img-fluid" alt="Blog image" width="50%" height="50%" />
+                    <ul>
+                        <li>robotic grasping e.g. robotic surgery in medicine</li>
+                        <li> autonomous driving e.g. traffic prediction</li>
+                        <li>augmented reality e.g. rendering objects with custom skins</li>
+                    </ul>
+
+
+                    <br>
+                    <h2 class="text-uppercase text-capitalize"> The Problem To solve</h2>
+                    Assuming object in 3d space by using a camera we can obtain appearance of object from specific viewpoint. In 6d pose estimation we want to use this image to retrieve the 3d location and 3d orientation of the object relative to the camera
+                    So What is this as a equation? How can we express this to a computer?
+
+                    <img src="img/blog/worldcam.jpg" class="img-fluid" alt="Blog image" width="50%" height="50%" />
+
+                    $$Cameracoordinates = Rotation * realworldcoordinates + Translation$$
+                    So we are searching for a way that translates the world coordinate of the object into the camera coordinate
+                    In general, an object pose can be estimated by directly predicting rotation/translation by regression, solving a Perspective-nPoints (PnP) problem  or matching images with known poses
+                    Direct prediction of rotation and translation by regression is mostly limited to a specific instance or category, which has difficulty in generalizing to unseen objects. Meanwhile, due to the lack of 3D models, PnP-based methods do not have 3D keypoints to build 2D-3D correspondences so that they are incompatible with model-free setting.
+
+
+                    <br>
+                    <h2 class="text-uppercase text-capitalize"> Recent technologies and solutions</h2>
+                     In the paper : He, Zaixing & Feng, Wuxi & Lv, Yongfeng. (2021). <a href="https://www.mdpi.com/2076-3417/11/1/228">6D Pose Estimation of Objects: Recent Technologies and Challenges. Applied Sciences. – Overview  </a> they classify the solutions in the following approaches.
+                    <ul>
+                        <li>Learning-Based</li>
+                        <ul>
+                            <li>Keypoint-Based</li>
+                            <li>Hollistic</li>
+                            <li>RGBD-Based</li>
+                        </ul>
+                        <li> Non-Learning-Based</li>
+                        <ul>
+                            <li>RGB-Information</li>
+                            <li>RGBD-Information</li>
+                        </ul>
+                    </ul>
+                    <p>
+                        Learning-based approaches mainly use CNN, regression or some other methods based on deep learning to train a learning model with adequate training data and then obtain the 6D pose estimation result on the basis of these models unknown situation according to the training data.
+                        Keypoints-based approaches adopt a two-step category 2D-3D correspondences between images and then measure the pose according to these correspondences.
+                        1. extract the 2D feature points in the input image
+                        2. regress the 6D pose results using a PnP algorithm.
+                        holistic approaches is to train an end-to-end network sees the image as a whole and tries to predict the location and orientation of the object in a single step and discretize the 6D space, converting the pose estimation task into a classification task end-to-end architecture that can be faster than keypoint-based approaches.
+                        RGB-D-based learning approaches combine color information and depth information to achieve a more accurate and robust 6D pose result.
+                        Non Learning convert the 6D pose estimation into image retrieval calculate the key points or key features and match the input image with the most similar image in the dataset according to the key points or key features.
+                        2D-find the correlation between the input image and one of the template images through the 2D information.
+                    </p>
+
+                    <br>
+                    <h2 class="text-uppercase text-capitalize"> Gen6D - Method</h2>
+                    <p>
+                        <a href="https://liuyuan-pal.github.io/Gen6D/">In the paper Generalizable Model-Free 6-DoF Object Pose Estimation from RGB Images </a> by Liu, Yuan and Wen, Yilin and Peng, Sida and Lin, Cheng and Long, Xiaoxiao and Komura, Taku and Wang, Wenping
+                        the scientists address the following problems with their aproach.
+                        RGBD approaches perform poorly outdoor, on thin small objects or transparent or fast moving. Therefore they only use RGB
+                        They claim to be
+                        <br>
+                        Generalizable: arbitrary object without training on the object or its category -> Generalizable pose estimators mostly require an object model
+
+                        <br>
+                        Model-free : only needs some reference images of this object with known poses to define the object reference coordinate system
+                        <br>
+                        Simple inputs: RGB images as inputs without requiring additional object masks or depth maps
+                        <br>
+                        Image matching challenge:
+                        images into feature vectors and compute similarities using distances of feature vectors, in which cluttered background interferes the embedded feature vectors and thus severely degenerates the accuracy
+                        given a query image, there may not be a reference image with exactly the same viewpoint as the query image. In this case, there will be multiple plausible reference images and the selector has to select the one with the nearest viewpoint as the query image, which usually are very ambiguous.
+
+                        They propose this method(following pictures from them from paper):
+
+                        <img src="img/blog/method6d.png" class="img-fluid" alt="Blog image" />
+                        First it detects the object regions by correlating the reference images with the query image.
+                        Then the viewpoint selector matches the query image against the reference images to produce a coarse initial pose.
+                         And last initial pose is further iteratively refined by a pose refiner to search for an accurate object pose 3D volume-based pose refinement.
+
+                        <h3 class="text-uppercase text-capitalize"> Detector</h3>
+                        <img src="img/blog/det6d.png" class="img-fluid" alt="Blog image" />
+                    The tas of  object detector is to crop the object region and estimates an initial translation.
+                    INPUT: QUERY image, reference image
+                    OUTPUT: bounding box with center and size, + estimated rotation
+                    First they extract feature maps on both the reference images and the query image by a VGG  network. Then, the feature maps of all reference images are regarded as convolution kernels to convolve with the feature map of the query image to get score maps.
+                    Score maps are further processed by a CNN to produce a heat map about the object center and a scale map to determine the bounding box size (multi-scale score maps, we regress a heat map and a scale map
+                    select the location with the max value on the heat map as the 2D projection of the object center and use the scale value s at the same location on the scale map to compute the bounding box size ).
+
+                    <h3 class="text-uppercase text-capitalize"> Selector</h3>
+                    <img src="img/blog/sel6d.png" class="img-fluid" alt="Blog image" />
+                    The idea is to use
+                    neural networks to pixel-wisely compare the query image with every reference image to produce similarity scores and select the reference image with highest similarity score-- concentrate on object regions and reduces the influence of cluttered background
+                    global normalization layers(normalize image) and self-attention layers to share similarity information across different reference images.
+                    reference images commute with each other, which provides context information for the selector.
+                    The tas of selector is that it selects a reference image whose viewpoint is the nearest to the query image.
+                    INPUT: Cropped Query Image, Rotated Reference Image
+                    OUTPUT:in-plane rotation, similarity score
+                    First: Get correlation score Maps the same as in Detection every feature map of reference images, they compute its element-wise product with the feature map of the query image to produce a correlation score map
+                    correlation score map is processed by a similarity network to produce a similarity score and a relative in-plane rotation (roll,pitch,yaw)
+                    The special designs they used are
+                    <br>
+                    INPLANE:every reference image is rotated by Na predefined angles and all rotated versions are used in the element-wise product with the query image.
+
+                    <br>
+                    Global normalization : every feature map produced by the similarity network, we normalize it with the mean and variance computed from all feature maps of reference images helps selector select the relatively most similar reference image because it allows the distribution of feature maps to encode the context similarity, every reference image, maxpooling is applied on its feature map to produce a similarity feature vector
+
+                    <br>
+                    Reference view transformer : transformer on the similarity feature vectors of all reference images, which includes the positional encoding of their viewpoints and attention layers over all similarity feature vectors  feature vectors communicate with each other to encode contextual information , outputs of reference view transformer will be used to regress a similarity score and an in-plane rotation angle for each reference image. The viewpoint of the reference image with highest score will be selected
+
+                    <h3 class="text-uppercase text-capitalize"> Refiner</h3>
+                    <img src="img/blog/ref6d.png" class="img-fluid" alt="Blog image" />
+                    </p>
+                    The refiner iteratively refines 3D volume-based pose to get the best pose.
+                    INPUT: Images, Initial pose, cente, size
+
+                    It extracts feature maps on these selected reference images by a 2D CNN. THen it
+                    builds a volume within the unit cube at the origin. Then it computes the mean and variance of features among all reference images as features for volume vertices
+                    query image, they also extract its feature map by the same 2D CNN,
+                    build a volume within the unit cube at the origin
+                    unproject feature map into the 3D volume using the input pose and concatenate the unprojected query features with the mean and variance of reference image features
+                    apply a 3D CNN on the concatenated features of the feature volume, which outputs a pose residual to update the input pose.
+
+                    key difference to other paper is that it does not require rendering an image on the input pose, 3D volume is constructed by multiple reference images with different poses, infer how pose changes affect the image features for unseen
+                    previous pose refiners only compare a rendered image with the input query image to compute a pose residual. Such a 2D image does not provide enough 3D structure information to infer how pose changes affect image pattern
+                    query image and an input pose, so the refiner finds several reference images that are near to the input pose
+                    Thenreference images are projected back into 3D space to construct a feature volume
+                    The constructed feature volume is matched against the features projected from the query image by a 3D CNN to refine the input pose.
+
+                    <br>
+                    <h2 class="text-uppercase text-capitalize">Limitations in 6D Pose Estimation</h2>
+                    In Gen 6D
+                    <ul>
+                        <li>Needs a large amount of data with known ground-truth poses to achieve good performance</li>
+                        <li>using synthetic data only and using less real data both reduce the performance</li>
+                        <li>challenged by reflecting, shiny, deformable or textureless objects</li>
+                        <li>require large storage to save enough templates to ensure the accuracy of pose estimation</li>
+                    </ul>
+
+                    <br>
+                    <h2 class="text-uppercase text-capitalize"> 6D Pose Estimation Comparison of approaches</h2> From the Paper He, Zaixing & Feng, Wuxi & Lv, Yongfeng. (2021). 6D Pose Estimation of Objects: Recent Technologies and Challenges. Applied Sciences. YOu obtain the following results
+                    A= Good, B= OK, C = Ok
+                    <img src="img/blog/comp6d.png" class="img-fluid" alt="Blog image" />
+
+
+                    <p>Sources:
+                        https://upload.wikimedia.org/wikipedia/commons/f/fa/6DOF_en.jpg
+                        https://1.bp.blogspot.com/-0-4YYC0P_qI/XV1Z84cFOqI/AAAAAAAABvs/3fXJSY0LtvAaKp2P0yxbkbKUj3SEw_wMwCEwYBhgL/s320/1_i6AToXUfI5-RflCKBVRrBA.gif
+                        https://liuyuan-pal.github.io/Gen6D/video/app_compressed.mp4
+                        https://www.fdxlabs.com/wp-content/uploads/2019/04/CameraRealXYZ.jpg
+                    </p>
+                </div>
+                <!-- Article Content Ends -->
+            </article>
+            <!-- Article Ends -->
+        </div>
+    </div>
+</section>
+<script>
+    (function(d,t) {
+      var BASE_URL="https://app.chatwoot.com";
+      var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+      g.src=BASE_URL+"/packs/js/sdk.js";
+      g.defer = true;
+      g.async = true;
+      s.parentNode.insertBefore(g,s);
+      g.onload=function(){
+        window.chatwootSDK.run({
+          websiteToken: '95gxWSXDhPyuAT4nk1vmdJAD',
+          baseUrl: BASE_URL
+        })
+      }
+    })(document,"script");
+  </script>
+<!-- Template JS Files -->
+<script src="js/jquery-3.5.0.min.js"></script>
+<script src="js/preloader.min.js"></script>
+<script src="js/fm.revealator.jquery.min.js"></script>
+<script src="js/imagesloaded.pkgd.min.js"></script>
+<script src="js/masonry.pkgd.min.js"></script>
+<script src="js/classie.js"></script>
+<script src="js/cbpGridGallery.js"></script>
+<script src="js/jquery.hoverdir.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/custom.js"></script>
+
+</body>
+
+</html>
