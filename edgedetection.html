@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Edge detection with evolutionary algorithms</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Template Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,600i,700" rel="stylesheet">
+
+  <!-- Template CSS Files -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/preloader.min.css" rel="stylesheet">
+  <link href="css/circle.css" rel="stylesheet">
+  <link href="css/font-awesome.min.css" rel="stylesheet">
+  <link href="css/fm.revealator.jquery.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+
+  <!-- CSS Skin File -->
+  <link href="css/skins/green.css" rel="stylesheet">
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <!-- Modernizr JS File -->
+  <script src="js/modernizr.custom.js"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body class="blog-post light">
+<!-- Header Starts -->
+<header class="header" id="navbar-collapse-toggle">
+  <!-- Fixed Navigation Starts -->
+  <ul class="icon-menu d-none d-lg-block revealator-slideup revealator-once revealator-delay1">
+    <li class="icon-box">
+      <i class="fa fa-home"></i>
+      <a href="index.html">
+        <h2>Home</h2>
+      </a>
+    </li>
+    <li class="icon-box">
+      <i class="fa fa-user"></i>
+      <a href="about.html">
+        <h2>About</h2>
+      </a>
+    </li>
+    <li class="icon-box">
+      <i class="fa fa-briefcase"></i>
+      <a href="portfolio.html">
+        <h2>Portfolio</h2>
+      </a>
+    </li>
+    <li class="icon-box">
+      <i class="fa fa-book"></i>
+      <a href="blog.html">
+        <h2>Blog</h2>
+      </a>
+    </li>
+  </ul>
+  <!-- Fixed Navigation Ends -->
+  <!-- Mobile Menu Starts -->
+  <nav role="navigation" class="d-block d-lg-none">
+    <div id="menuToggle">
+      <input type="checkbox" />
+      <span></span>
+      <span></span>
+      <span></span>
+      <ul class="list-unstyled" id="menu">
+        <li><a href="index.html"><i class="fa fa-home"></i><span>Home</span></a></li>
+        <li><a href="about.html"><i class="fa fa-user"></i><span>About</span></a></li>
+        <li><a href="portfolio.html"><i class="fa fa-folder-open"></i><span>Portfolio</span></a></li>
+        <li class="active"><a href="blog.html"><i class="fa fa-comments"></i><span>Blog</span></a></li>
+      </ul>
+    </div>
+  </nav>
+  <!-- Mobile Menu Ends -->
+</header>
+<!-- Header Ends -->
+<!-- Page Title Starts -->
+<section class="title-section text-left text-sm-center revealator-slideup revealator-once revealator-delay1">
+  <h1>my <span>blog</span></h1>
+  <span class="title-bg">posts</span>
+</section>
+<!-- Page Title Ends -->
+<!-- Main Content Starts -->
+<section class="main-content revealator-slideup revealator-once revealator-delay1">
+  <div class="container">
+    <div class="row">
+      <!-- Article Starts -->
+      <article class="col-12">
+        <!-- Meta Starts -->
+        <div class="meta open-sans-font">
+          <span><i class="fa fa-user"></i> Karl-A. Jahnel</span>
+          <span class="date"><i class="fa fa-calendar"></i> 21st January 2022</span>
+          <span><i class="fa fa-tags"></i> genetic algorithms, evolutionary algorithms, edge detection, python, simulated annealing, canonical genetic algorithm, machine larning, optimization problems</span>
+        </div>
+        <!-- Meta Ends -->
+        <!-- Article Content Starts -->
+        <h1 class="text-uppercase text-capitalize">Edge detection as
+          optimization problem solved
+          using Evolutionary Algorithms</h1>
+        <img src="img/projects/edgedetect.gif" class="img-fluid" alt="Blog image"/>
+        <div class="blog-excerpt open-sans-font pb-5">
+          <h2 class="text-uppercase text-capitalize">Abstract</h2>
+          <p>The edge detection problem in this work is to choose an edge configuration
+            with minimum cost. The four evolutionary algorithms used are Simulated Annealing, Hillclimbing, Steady-State and the canonical Genetic Algorithm.
+            Algorithm. The transformation of the edge detection into a minimization problem is achieved
+            by formulating a cost function that evaluates the quality of the edge configurations. The function is a linear sum of weighted cost factors. The cost factors
+            capture desirable properties of edges such as accuracy in localization, sparseness, and continuity. It turns out that none of the algorithms provide perfect results but
+            promising approximations. The implementation is very computationally expensive, but it offers
+            a great potential for parallelization
+          </p>
+
+          <h2 class="text-uppercase text-capitalize">Introduction</h2>
+          <p>Edge detection is an important step
+            in image processing systems and recognition.
+            Existing edge detection operators
+            like the Sobel gradient operator and the
+            Laplacian operator are based on the assumption that
+            assumption that edges in an image are step-shaped intensity edges, Therefore.
+            the resulting edges are usually
+            thick and fragmented. Finding true
+            edges in an image is still a
+            difficult task. Another problem of
+            existing operators is the huge search
+            search space. If we consider an image with 1024
+            by 1024 pixels, the solution space is $$2^{1024} \cdot 2^{1024} $$ . Therefore, without optimization, the
+            the task of edge detection is time consuming
+            and memory intensive. The minimization problem was first posed by [6]. In [1]
+            it was again taken up in detail,
+            explained and investigated. In the last years
+            there was again an increased interest in this approach. It was in [5] the Tabu search
+            and a promising result was
+            was delivered. Other approaches that have been proposed as alternatives
+            to the classical Canny edge detector [2] or
+            the Sobel operator used here [4] are
+            neural networks as in [7]. In [3], the
+            optimal threshold after the Sobel filter is found using
+            genentic algorithms is found. An overview is given in the paper [8] . With the help of sparse
+            and accurate edges can be used in medical
+            features from X-ray fingerprints can be
+            can be extracted.
+
+          </p>
+
+          <img src="img/blog/fing.png" class="img-fluid" alt="Blog image"/>
+          <h2 class="text-uppercase text-capitalize">Description of the Chromosome</h2>
+          <p>The chromosome is represented by a bit matrix
+            of NxN (size of the image). Thus, it describes the final edge image
+            The initial chromosome used in TabuSearch, or the initial chromosome population in Genetic Algorithm and Local Search Algorithm are randomly generated from the edge-enhanced image. Edge-enhanced here means an image generated from the input image. For this
+            two ways were used. One is the
+            Region-Dissimilarity image from [6] or on the other hand as in [1] using the Sobel-operator generated image. The chromosome values are either 0 or l, where 0 represents a non-edge pixel and 1 represents an edge pixel. In
+            this experiment, the chromosome value of a pixel [x,y] is generated using the following formula.
+            generated[5]:
+            $$Chromosome[x,y]=R1 * Integer(Sobel[x,y]+R2)$$
+            $$\text{where }$$
+            $$\text{R1 is a random Integer either 0 or 1}$$
+            $$\text{R2 is a random float between 0.99}$$
+            Thus, from the edge-enhanced
+            image, first approximations are estimated randomly.
+            These are then optimized in the next step by the
+            optimized by the evolutionary algorithm.
+
+            <br>
+          <p class="font-weight-bold">Sobel operator:</p>The Sobel operator is a simple edge detection
+            edge detection filter, which is often used in image
+            image processing and is used there as an
+            and is used there as an algorithm with the help of convolution. It calculates the first derivative
+            of the pixel brightness values, while at the same time smoothing orthogonal to the direction of
+            is performed.
+            <br>
+          <p class="font-weight-bold">Region-Dissimilarity:</p>
+          the fundamental property of an edge is that it separates
+          regions that are not similar.
+          The enhanced image is a collection of pixels in which each pixel value is proportional to
+          the degree of regional dissimilarity.
+          dissimilarity enhancement, we assign a floating point value to those points in an image that possess this fundamental property 0 ≤ d ≤ 1. For this approximation.
+          two things are required. A good localization of regions of interest and a
+          specification of what an edge should look like. This specification is hardcoded as one of twelve
+          edge structures. The regions are thus
+          searched in a 3x3 environment. Since one defines edge structures at such a low level, it is not impossible that more specialized edge structures are excluded for larger images. For each edge structure, we define a pair of regions on either side of the edge.
+          sides of the edge. These regions, which for each edge structure we will denote R1 and R2
+          will be the regions of interest to which
+          a dissimilarity measurement is applied.
+          These regions are one side or the other around the circled edge pixel, which
+          represents the edge by crosses. Depending on the
+          application and the measure of
+          dissimilarity, larger (or smaller) regions for
+          regions could be defined for Rl and R2. This measure could be a simple difference of the
+          gray level mean values in Rl and R2, or
+          could be a more complicated measure based on statistical or structural properties of the
+          Gray levels. The procedure from [6] is
+          now described:
+          </p>
+
+
+          <ol>
+            <li>At the beginning all pixels are set equal to zero.</a> </li>
+            <li>At each pixel the steps a)
+              and b)</li>
+              <ol type="a">
+                <li>Each of the twelve edge structures of the
+                  basis set is transferred to the location by centering it on the pixel. The corresponding paired regions Rl and R2 are
+                  determined for each structure, and the
+                  value of the simple difference of the
+                  gray value averages in Rl and R2
+                  is calculated. The structure that gives the
+                  gives the maximum value is called
+                  the best fitting edge structure.</li>
+                <li>Now, a nonmaximal suppression is performed by shifting the position of the best matched
+                  edge in a direction determined by the edge structure. For vertical, horizontal and diagonal edges the
+                  shifting is done by shifting the
+                  position by one pixel in each of the
+                  direction perpendicular to the edge. For all other edge structures
+                  by shifting the position of the edge
+                  by one pixel in each of the four directions: up, down, left and right.
+                  up, down, left and right. For
+                  each shifted edge we determine
+                  the new regions [or R1 and
+                  R2 and calculate the corresponding value. One of the two following
+                  cases results:
+                 <ul>
+                   <li>no larger value results from
+                     Moving the best matched edge structure, then increasing the value of the dissimilarity measure by one third of the
+                     dissimilarity measure.</li>
+                   <li>If there is a larger value
+                     exists, nothing changes.</li>
+                 </ul></li>
+              </ol>
+            <li>At the end, the value is normalized to a scale from 0 to 1.
+            </li>
+          </ol>
+          <img src="img/blog/valid.png" class="img-fluid" alt="Blog image"/>
+
+
+
+          <h2 class="text-uppercase text-capitalize">Setting up the
+            Optimization problem</h2>
+          <p>The function assigns a cost function for each feature
+            adds a cost function so that the configuration with the lowest cost is the best.In practice, there is often a tradeoff between the various desirable properties of an edge. For example, if each edge in an image is required to be
+            must be long and continuous, this can lead to
+            poor localization and the appearance of false boundaries. Therefore it is
+            appropriate to assign a measure of importance to each desirable edge property. This is achieved here by a linear combination
+            of weighted cost factors, where each cost factor maps a desirable property of edges.
+            The cost factors are curvature Cc, the
+            region difference Cd, number of edges
+            Ce, fragmentation Cf, and thickness Ct. First, we
+            the general form of the cost function is described and then the individual cost factors. Thus, the following function results. S
+            corresponds here to the gray value image, which is calculated after
+            after the application of the Sobel operator.
+            The function iterates over each relevant pixel, which is interesting for the pixel site p, which was changed during the mutation. $$F(S)=\sum_i w_i C_i (S,p)$$
+            The individual weights w depend on the
+            respective image. For example, for a
+            32x32 image with a circle the standard weights from the paper [6] work. The choice of weights is discussed and proven in detail there. For this case the following are chosen:
+
+            $$w_d = 2.0, w_t = 4.76,  w_e = 0.25, w_f = 2.0,  w_e=1.0$$
+          </p>
+
+          <h2 class="text-uppercase text-capitalize">Cost factors</h2>
+
+
+          <p>
+
+          <p class="font-weight-bold">Cost of curvature:</p>
+
+          The cost of
+          Curvature rank the non-endpoint edge pixel based on a local
+          curvature measure. This cost tends
+          tend to smooth or remove curved edges.
+          remove. To define the curvature cost
+          consider an edge pixel
+          which is not an endpoint. Then the edge pixel is the connection point (or common point) of at least one pair of straight edge segments. The direction of each of these
+          straight edge segments is uniquely specified by a
+          a vector from location 1 to location 2 of any other pixel of the
+          Location 2 of any other pixel of the segment. Let n be the maximum number of distinct pairs of straight edge segments,
+          connected by this connection point
+          are. If we now measure the larger of the two
+          angle, which here is ϕ, the following results-
+
+          <img src="img/blog/curv.png" class="img-fluid" alt="Blog image"/>
+          Thus, angles representing straight edges are preferred.
+
+          <p class="font-weight-bold">Cost of dissimilarity of regions:</p>
+          : This dissimilarity cost
+          assigns costs to the non-edge pixels that are
+          are proportional to the degree of dissimilarity.
+          This cost factor leads to placing edge pixels at
+          Points with high dissimilarity.
+          The region dissimilarity point cost factor
+          Cd is given by:
+
+          <img src="img/blog/diss.png" class="img-fluid" alt="Blog image"/>
+          <p class="font-weight-bold">Cost for the number of edges:</p>
+
+          The
+          cost for the number of edge points assigns a (unit) price to each edge pixel.
+          to each edge pixel. This cost is intended to prevent
+          that an excessive number of edge pixels are
+          are detected. The cost factor for edge pixels Ce is given by
+
+          <img src="img/blog/num.png" class="img-fluid" alt="Blog image"/>
+
+          <p class="font-weight-bold"> Cost of fragmentation:</p>
+          The costs
+          for the fragmentation assign costs for the
+          Endpoint edge pixels. These costs lead
+          tend to (locally) join or remove fragmented edges.
+          To connect or remove. If we consider an
+          isolated endpoint as a path
+          that connects two non-isolated endpoints.
+          However, if these are the same, then this point is alone. Then it seems reasonable to consider the cost of
+          an isolated endpoint is twice as high as that of a
+          as that of a non-isolated endpoint. The
+          fragmentation point cost factor Cf is given by
+
+          <img src="img/blog/frag.png" class="img-fluid" alt="Blog image"/>
+          <p class="font-weight-bold">  Edge thickness cost :</p>The cost factor Ct gives a (unit) price for thick
+          edge pixels. An edge pixel is thick if the
+          maximum degree of adjacent edge pixels in a 5x5 window is 1 or less for all the
+          pixels in that window except the centered ones.
+          This implementation fails for "holes" and must be
+          and must be improved.
+          <img src="img/blog/thic.png" class="img-fluid" alt="Blog image"/>
+          The interaction between the various
+          cost factors is very complex. Nevertheless, it is
+          it is possible to derive some interesting relationships between the different cost factors. These derivations can be represented with the help of a decision tree to save computing time.
+
+          <img src="img/blog/dectree.png" class="img-fluid" alt="Blog image"/>
+          </p>
+
+
+          <h2 class="text-uppercase text-capitalize">Genetic algorithms</h2>
+          <p>
+
+            The chromosomes of the parent population are used for reproduction on the basis of the
+            fitness value, i.e. the reciprocal of the cost,
+            Therefore, the probability that each chromosome
+            that each chromosome will be selected is inversely proportional to the cost
+
+          <p class="font-weight-bold">Recombination:</p>
+          Der Twopoint-Crossover is performed because it is easy to implement and reasonable genetic material can be exchanged. Two sites are randomly selected along the X dimension and two
+          sites along the Y dimension randomly selected for the crossover operation. The task of mutation is to introduce new genetic material into the current
+          generation. The mutation is necessary because the population of chromosomes in the
+          Genetic Algorithm over the course of several generations through effective mate selection and crossover to some degree of
+          crossbreeding reaches a certain degree of convergence, there is a risk that the solution will not
+          converge any more.
+
+          <p class="font-weight-bold">Mutation:</p>
+          There are two different strategies for mutation. One is the efficient
+          binary mutation, where the idea is that you can
+          the distance to a next mutation
+          i.e. a bitflip is calculated by
+
+          <img src="img/blog/mutfo.png" class="img-fluid" alt="Blog image"/>
+          The Other strategy randomly selects a certain number of edge pixels and replaces the
+          3x3 neighborhood from that edge pixel with a randomly selected valid edge structure. The strategy with valid edge structures seems to be faster in the local search.
+          to arrive at an optimum, no great difference was found in the genetic algorithms.
+          <p class="font-weight-bold">Selection:</p>
+          Selection determines which individuals are used for recombination and which are selected for the next generation. Since local search algorithms like simulated annealing work very well in this problem, a high selection pressure is expected.
+          high selection pressure is expected. However, to make this
+          tournament selection is chosen to make this adaptable. In tournament selection, a certain number of
+          randomly selected a certain number of "opponents" of the
+          of the population are randomly selected and let compete against each other. The winner is the one
+          These winners are then returned when the number of required individuals is reached.
+
+
+
+          </p>
+
+
+          <h2 class="text-uppercase text-capitalize">Canonical Genetic Algorithm</h2>
+          <p>
+            With the canonical genetic algorithm
+            it is tried to search parallel in the search space
+            to prevent local optima. The idea
+            is that more than one individual exists in a
+            population. The population must be filtered. This is done with the operators recombination and selection as explained above. Then the parents are mutated and a new
+            a new generation is created. This is then
+            evaluated again and then everything starts until the
+            Convergence of the evaluation of new
+          </p>
+          <h2 class="text-uppercase text-capitalize">Steady-State</h2>
+          <p>Steady-state here means that there are no generations in the classical sense. It is tried to get a stable population and to change it
+            always from the best to change this
+            and to integrate the children of the best. In
+            each generation a few (good -
+            with high fitness) chromosomes are selected to produce a new offspring.
+            Then some (bad - with low
+            with low fitness) chromosomes are removed and the new
+            offspring is put in their place. The
+            rest of the population survives until the next
+            generation. This agorithm was chosen
+            because the calculation takes very long and similar attempts were made at the local search. However, many principles of the evolutionary algorithms do not apply here.
+            do not apply.
+
+
+          </p>
+          <h2 class="text-uppercase text-capitalize">Local Search Algorithms</h2>
+          <p>In the local search-based cost minimization approach to edge detection, the cost factors in the comparative
+            cost function by computing a one decision tree. The local search is an iterative algorithm in which a
+            cost function is used as a criterion
+            to find the better of two edge configurations S and S1.
+            different depending on the mutation A new edge configuration is generated from the current edge configuration by using one of the two
+            described mutations. The
+            new edge configuration replaces the current
+            edge configuration if it proves to be better (i.e.
+            (i.e., has a lower cost value). The algorithm is terminated when a simple
+            simple termination criterion is met. The termination criterion could be, for example, as also implemented here
+            implemented here on the number of better configurations according to K Itera-.tions. In the local search, the
+            population consists of only one individual. This is evaluated, mutated, evaluated again and
+            possibly exchanged. This kind of selection
+            is in the extreme case: If it is better take it.
+            This would be then the Hillclmbing algorithm</p>
+
+          <h2 class="text-uppercase text-capitalize">Simulated-Annealing</h2>
+          <p>
+            Simulated Annealing is the modeling of the
+            physical cooling process. The probability that an ideal system
+            is in the state x is proportional to
+            $$e^{-\fraq{E(x)}{t}}$$
+           where E(x) is the energy level and T
+            is the absolute temperature. In physics
+            a fast cooling brings more irregular structures, which corresponds to local optima
+            and a slower cooling brings more regular structures, which rather global optima
+            leads. Thus, jumps from local optima are accepted even if they are somewhat worse. In principle: always accept improvements, deteriorations with decreasing probability. It was implemented by dividing the negative difference of the two individuals to be
+            individuals to be compared by the temperature. the temperature starts with 100 and
+            cools down each time with the factor 0.85 as α.
+          </p>
+
+          <h2 class="text-uppercase text-capitalize">Conclusion</h2>
+<p>
+  It can be concluded that in principle it is possible to model edge detection as a minimization problem.
+  minimization problem. The
+  evaluation function is not optimal.
+  There are other approaches that work better, such as neural networks.
+  Promising in this context is
+  to reconsider the weighting function, because the weighting of the factors brings large
+  inaccuracies with itself. Errors in the
+  implementation are also not to be excluded.
+  Furthermore, the whole thing is very computationally intensive and very slow.
+  and very slow. The potential for parallelization with the Genetic Algorithms and the
+  the images in general can be used
+  to carry out a parallelization it
+  to speed it up. The implementation can be
+  can be found at https://github.com/Barathaner/edgedetection-with-evolutionary-algorithms and it is possible to collaborate on the
+  can be collaborated.
+
+</p>
+
+
+          <img src="img/blog/lit.png" class="img-fluid" alt="Blog image"/>
+          <img src="img/blog/lit2.png" class="img-fluid" alt="Blog image"/>
+
+        </div>
+        <!-- Article Content Ends -->
+      </article>
+      <!-- Article Ends -->
+    </div>
+  </div>
+</section>
+<script>
+  (function(d,t) {
+    var BASE_URL="https://app.chatwoot.com";
+    var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=BASE_URL+"/packs/js/sdk.js";
+    g.defer = true;
+    g.async = true;
+    s.parentNode.insertBefore(g,s);
+    g.onload=function(){
+      window.chatwootSDK.run({
+        websiteToken: '95gxWSXDhPyuAT4nk1vmdJAD',
+        baseUrl: BASE_URL
+      })
+    }
+  })(document,"script");
+</script>
+<!-- Template JS Files -->
+<script src="js/jquery-3.5.0.min.js"></script>
+<script src="js/preloader.min.js"></script>
+<script src="js/fm.revealator.jquery.min.js"></script>
+<script src="js/imagesloaded.pkgd.min.js"></script>
+<script src="js/masonry.pkgd.min.js"></script>
+<script src="js/classie.js"></script>
+<script src="js/cbpGridGallery.js"></script>
+<script src="js/jquery.hoverdir.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/custom.js"></script>
+
+</body>
+
+</html>
