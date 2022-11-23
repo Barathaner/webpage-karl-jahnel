@@ -63,11 +63,11 @@ body {
 }
 
 .poppins-font {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'SansSerif', sans-serif;
 }
 
 .open-sans-font {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'SansSerif', sans-serif;
 }
 
 hr.separator {
@@ -1807,4 +1807,19 @@ body.light hr.separator {
   .separator.mt-1 {
     margin-top: 35px !important;
   }
+}
+
+
+.footer{
+  text-align:center!important;
+  position: relative;
+  margin-top: 5rem;
+  padding: 1rem;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  clear: both;
+}
+.links{
+  color:black;
 }
