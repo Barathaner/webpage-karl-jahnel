@@ -1824,3 +1824,15 @@ body.light hr.separator {
 .links{
   color:black;
 }
+
+.centered-list {
+    list-style-type: none; /* Removes the default list style */
+    padding: 0; /* Removes the default padding */
+    margin: 0 auto; /* Centers the list */
+    display: table; /* Allows the list to shrink to fit content */
+}
+
+.centered-list li {
+    display: block; /* Each list item takes up the full width of the list */
+    text-align: center; /* Centers the text within each list item */
+}
