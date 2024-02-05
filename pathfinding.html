@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Coverage Path Planning for any 2D
+        Polygon with a PyQT Visualization</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- Template CSS Files -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/preloader.min.css" rel="stylesheet">
+    <link href="css/circle.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/fm.revealator.jquery.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- CSS Skin File -->
+    <link href="css/skins/green.css" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <!-- Modernizr JS File -->
+    <script src="js/modernizr.custom.js"></script>
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+
+<body class="blog-post light">
+<!-- Header Starts -->
+<header class="header" id="navbar-collapse-toggle">
+    <!-- Fixed Navigation Starts -->
+    <ul class="icon-menu d-none d-lg-block revealator-slideup revealator-once revealator-delay1">
+        <li class="icon-box">
+            <i class="fa fa-home"></i>
+            <a href="index.html">
+                <h2>Home</h2>
+            </a>
+        </li>
+        <li class="icon-box">
+            <i class="fa fa-user"></i>
+            <a href="about.html">
+                <h2>About</h2>
+            </a>
+        </li>
+        <li class="icon-box">
+            <i class="fa fa-briefcase"></i>
+            <a href="portfolio.html">
+                <h2>Portfolio</h2>
+            </a>
+        </li>
+        <li class="icon-box">
+            <i class="fa fa-book"></i>
+            <a href="blog.html">
+                <h2>Blog</h2>
+            </a>
+        </li>
+    </ul>
+    <!-- Fixed Navigation Ends -->
+    <!-- Mobile Menu Starts -->
+    <nav role="navigation" class="d-block d-lg-none">
+        <div id="menuToggle">
+            <input type="checkbox" />
+            <span></span>
+            <span></span>
+            <span></span>
+            <ul class="list-unstyled" id="menu">
+                <li><a href="index.html"><i class="fa fa-home"></i><span>Home</span></a></li>
+                <li><a href="about.html"><i class="fa fa-user"></i><span>About</span></a></li>
+                <li><a href="portfolio.html"><i class="fa fa-folder-open"></i><span>Portfolio</span></a></li>
+                <li class="active"><a href="blog.html"><i class="fa fa-comments"></i><span>Blog</span></a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Mobile Menu Ends -->
+</header>
+<!-- Header Ends -->
+<!-- Page Title Starts -->
+<section class="title-section text-left text-sm-center revealator-slideup revealator-once revealator-delay1">
+    <h1>my <span>blog</span></h1>
+    <span class="title-bg">posts</span>
+</section>
+<!-- Page Title Ends -->
+<!-- Main Content Starts -->
+<section class="main-content revealator-slideup revealator-once revealator-delay1">
+    <div class="container">
+        <div class="row">
+            <!-- Article Starts -->
+            <article class="col-12">
+                <!-- Meta Starts -->
+                <div class="meta open-sans-font">
+                    <span><i class="fa fa-user"></i> Karl-A. Jahnel</span>
+                    <span class="date"><i class="fa fa-calendar"></i> 13th December 2023</span>
+                    <span><i class="fa fa-tags"></i> Coverage Path Planning, PyQt, PyQt, Robotics, Robotics, GIS, Spatial Algorithms, Autonomous Navigation, Sensor Fusion , AI and Machine Learning</span>
+                </div>
+                <!-- Meta Ends -->
+                <!-- Article Content Starts -->
+                <h1 class="text-uppercase text-capitalize">Coverage Path Planning for any 2D
+                    Polygon with a PyQT Visualization</h1>
+                <div class="blog-excerpt open-sans-font pb-5">
+                    <img src="img/blog/cpp/cpp.png" class="img-fluid" alt="Blog image"/>
+
+                    <h2 class="text-uppercase text-capitalize">Motivation</h2>
+<p>                    In the ever-evolving world of robotics and automation, one niche yet crucial area garnering significant attention is Coverage Path Planning (CPP). This sophisticated field, which blends robotics, automation, and computational geometry, is pivotal for navigating and operating within 2D polygonal environments—a scenario ubiquitously encountered across numerous industries. Our latest paper delves into an advanced CPP model designed expressly for such settings, showcasing its industrial significance, inherent complexities, and the groundbreaking solutions we've devised.
+</p><br><p>
+At the heart of our model is a clever adaptation to the conventional CPP challenge: it caters to agents (robots or devices) with fixed dimensions, ensuring their efficient and feasible navigation across a 2D polygonal space. By approximating the polygon with a grid that mirrors the agent's size, our approach guarantees exhaustive coverage without overlooking any area or retracing steps unnecessarily. This strategy not only optimizes the coverage process but also circumvents the physical limitations posed by the agent's size.
+</p><br><p>
+Our model's complexity is tackled through a Boustrophedon-inspired method, adapted to accommodate the unique contours of the polygonal space. By dynamically merging grid cells and identifying critical waypoints, our algorithm ensures that every inch of the space is covered. The renowned A* algorithm, known for its pathfinding prowess, is employed with a Manhattan distance heuristic to find the most efficient route that fulfills the coverage criteria while respecting the polygon's boundaries.
+</p><br><p>
+A pivotal component of our model is its use of PyQt for visualization. This choice transcends mere graphical representation; it enables real-time monitoring and adjustment of the path planning process, a feature invaluable in industrial settings where operational flexibility and immediate feedback are paramount.
+</p><br><p>
+The practical implications of CPP are vast and varied. In agriculture, it revolutionizes field coverage for seeding and harvesting. In facility maintenance, it guarantees thorough cleaning with automated systems. And in warehouse management, it enhances inventory processes. Each application not only underscores the utility of CPP but also its adaptability to diverse operational needs and environmental constraints.
+</p><br><p>
+Our research is anchored in seminal works, including the foundational A* algorithm by Hart et al. (1968) and the Boustrophedon cellular decomposition approach by Choset and Pignon (1997). The Fields2Cover repository and recent scholarly contributions further enrich our methodology, offering a solid foundation and contemporary insights into CPP's application, particularly in agriculture.
+</p><br><p>
+In summary, our exploration of CPP in 2D polygonal environments opens up new horizons for efficiency and automation in industrial applications. By addressing the complex challenges of navigation and coverage, our model stands as a testament to the innovative synergy of computational geometry and practical robotics.
+</p><br>
+
+<h2 class="text-uppercase text-capitalize">Coverage Path planning Algorithm</h2>
+The Algorithm consists of three main parts:
+<br>
+1. Approximating the polygon in an Agent-Shaped grid.
+<br>
+2. Generating waypoints through the grid in a boustrophedon pattern.
+<br>
+3. A* Algorithm that builds a path through all waypoints.
+After the first part of the Algorithm, we get these blue rectangles which cover the full
+polygon. The Algorithm works like this:
+
+
+<br>
+Here are the main parts of the Algorithm:
+<img src="img/blog/cpp/cppalg1.png" class="img-fluid" alt="Blog image"/>
+<img src="img/blog/cpp/alg2.png" class="img-fluid" alt="Blog image"/>
+<img src="img/blog/cpp/alg3.png" class="img-fluid" alt="Blog image"/>
+after this we get the boustrophedon pattern:
+<img src="img/blog/cpp/cpp boustrophedon.png" class="img-fluid" alt="Blog image"/>
+
+<img src="img/blog/cpp/alg4.png" class="img-fluid" alt="Blog image"/>
+
+You can find the code on My GitHub:
+<a href="https://github.com/Barathaner/pathplanning">PathPlanning on Github</a>	
+                </div>
+                <!-- Article Content Ends -->
+            </article>
+            <!-- Article Ends -->
+        </div>
+    </div>
+</section>
+<script>
+    (function(d,t) {
+      var BASE_URL="https://app.chatwoot.com";
+      var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+      g.src=BASE_URL+"/packs/js/sdk.js";
+      g.defer = true;
+      g.async = true;
+      s.parentNode.insertBefore(g,s);
+      g.onload=function(){
+        window.chatwootSDK.run({
+          websiteToken: '95gxWSXDhPyuAT4nk1vmdJAD',
+          baseUrl: BASE_URL
+        })
+      }
+    })(document,"script");
+  </script>
+<!-- Template JS Files -->
+<script src="js/jquery-3.5.0.min.js"></script>
+<script src="js/preloader.min.js"></script>
+<script src="js/fm.revealator.jquery.min.js"></script>
+<script src="js/imagesloaded.pkgd.min.js"></script>
+<script src="js/masonry.pkgd.min.js"></script>
+<script src="js/classie.js"></script>
+<script src="js/cbpGridGallery.js"></script>
+<script src="js/jquery.hoverdir.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/custom.js"></script>
+
+</body>
+<div class="footer">
+    <a class="links" href="impressum.html">Impressum
+    </a>
+
+    <a class="links" href="datenschutz.html">Datenschutz
+    </a>
+</div>
+</html>
